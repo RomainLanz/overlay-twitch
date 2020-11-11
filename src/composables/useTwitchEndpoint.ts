@@ -1,5 +1,6 @@
 import axios from 'axios';
 import useSWRV from 'swrv';
+import { unref } from 'vue';
 import { getUrlParam } from '../utils/getKey';
 
 const twitchApiKey = getUrlParam('twitchKey', import.meta.env.VITE_TWITCH_API_KEY);

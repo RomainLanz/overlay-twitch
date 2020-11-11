@@ -1,4 +1,4 @@
-import delve from 'dlv';
+import _ from 'lodash';
 import { ref, watchEffect } from 'vue';
 import { useTwitchEndpoint } from './useTwitchEndpoint';
 
@@ -11,7 +11,7 @@ export function useFollowerCount() {
 			return;
 		}
 
-		followers.value = delve(data, 'value.streams[0].channel.followers', 0);
+		followers.value = _.get(data.value, 'streams[0].channel.followers', 0);
 	});
 
 	return followers;

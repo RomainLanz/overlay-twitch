@@ -1,4 +1,4 @@
-import delve from 'dlv';
+import _ from 'lodash';
 import { ref, watchEffect } from 'vue';
 import { useTwitchEndpoint } from './useTwitchEndpoint';
 
@@ -11,7 +11,7 @@ export function useViewerCount() {
 			return;
 		}
 
-		viewers.value = delve(data, 'data.value.streams[0].viewers', 0);
+		viewers.value = _.get(data.value, 'streams[0].viewers', 0);
 	});
 
 	return viewers;
