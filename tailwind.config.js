@@ -5,10 +5,11 @@ module.exports = {
 	},
 	purge: [],
 	theme: {
-		fontFamily: {
-			base: ['Cascadia Code'],
-		},
 		extend: {
+			fontFamily: {
+				sans: ['Work Sans'],
+				base: ['Cascadia Code'],
+			},
 			borderWidth: {
 				cam: '48px',
 			},

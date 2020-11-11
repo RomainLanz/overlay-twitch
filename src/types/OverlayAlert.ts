@@ -4,6 +4,7 @@ import {
 	StreamlabsTwitchFollowEventMessage,
 	StreamlabsTwitchHostEventMessage,
 	StreamlabsTwitchRaidEventMessage,
+	StreamlabsTwitchResubEventMessage,
 	StreamlabsTwitchSubscriptionEventMessage,
 } from './Streamlabs';
 
@@ -13,7 +14,8 @@ export type OverlayAlert =
 	| OverlayBitsAlert
 	| OverlayHostAlert
 	| OverlayRaidAlert
-	| OverlaySubscriptionAlert;
+	| OverlaySubscriptionAlert
+	| OverlayResubAlert;
 
 export type OverlayDonationAlert = {
 	type: 'donation';
@@ -38,3 +40,7 @@ export type OverlayRaidAlert = {
 export type OverlaySubscriptionAlert = {
 	type: 'subscription';
 } & StreamlabsTwitchSubscriptionEventMessage;
+
+export type OverlayResubAlert = {
+	type: 'resub';
+} & StreamlabsTwitchResubEventMessage;

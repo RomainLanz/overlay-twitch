@@ -3,6 +3,7 @@ export type StreamLabsEvent = StreamlabsDonationEvent | StreamLabsTwitchEvent;
 export type StreamLabsTwitchEvent =
 	| StreamlabsTwitchFollowEvent
 	| StreamlabsTwitchSubscriptionEvent
+	| StreamlabsTwitchResubEvent
 	| StreamlabsTwitchHostEvent
 	| StreamlabsTwitchBitsEvent
 	| StreamlabsTwitchRaidEvent;
@@ -56,8 +57,24 @@ export type StreamlabsTwitchSubscriptionEventMessage = {
 	message: string;
 	emotes: unknown;
 	sub_plan: string;
-	sub_plan_name: string;
 	sub_type: string;
+	_id: string;
+};
+
+export type StreamlabsTwitchResubEvent = {
+	type: 'resub';
+	for: 'twitch_account';
+	message: StreamlabsTwitchResubEventMessage[];
+};
+
+export type StreamlabsTwitchResubEventMessage = {
+	name: string;
+	message: string;
+	months: number;
+	emotes: unknown;
+	streak_months: number;
+	priority: number;
+	sub_plan: string;
 	_id: string;
 };
 

@@ -22,15 +22,16 @@
 	import { defineComponent } from 'vue';
 	import { useStreamlabsAlert } from '../composables/useStreamlabsAlerts';
 	import { OverlayAlert } from '../types/OverlayAlert';
-	import { FollowAlert, HostAlert, RaidAlert } from './Alerts';
+	import { BitsAlert, FollowAlert, HostAlert, RaidAlert, ResubAlert, SubscriptionAlert } from './Alerts';
 
 	const componentsMap: Record<OverlayAlert['type'], any> = {
 		follow: FollowAlert,
+		resub: ResubAlert,
 		host: HostAlert,
 		donation: FollowAlert,
-		bits: FollowAlert,
+		bits: BitsAlert,
 		raid: RaidAlert,
-		subscription: FollowAlert,
+		subscription: SubscriptionAlert,
 	};
 
 	const AlertList = defineComponent({
