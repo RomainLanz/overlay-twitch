@@ -9,6 +9,9 @@ module.exports = {
 			base: ['Cascadia Code'],
 		},
 		extend: {
+			borderWidth: {
+				cam: '48px',
+			},
 			colors: {
 				follow: '#fb6745',
 				host: '#e8368f',
