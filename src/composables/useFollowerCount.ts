@@ -1,3 +1,4 @@
+import delve from 'dlv';
 import { ref, watchEffect } from 'vue';
 import { useTwitchEndpoint } from './useTwitchEndpoint';
 
@@ -6,7 +7,11 @@ export function useFollowerCount() {
 	const data = useTwitchEndpoint();
 
 	watchEffect(() => {
-		followers.value = data?.value?.streams[0].channel.followers || 0;
+		if (!data) {
+			return;
+		}
+
+		followers.value = delve(data, 'value.streams[0].channel.followers', 0);
 	});
 
 	return followers;
