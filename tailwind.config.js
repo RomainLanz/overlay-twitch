@@ -14,6 +14,7 @@ module.exports = {
 				host: '#e8368f',
 				raid: '#ef4e4e',
 				sub: '#5a45ff',
+				bg: '#212935',
 			},
 		},
 	},

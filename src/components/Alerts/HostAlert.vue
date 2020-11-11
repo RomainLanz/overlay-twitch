@@ -7,8 +7,10 @@
 
 <script lang="ts">
 	import Alert from './Alert.vue';
-	import { defineComponent, PropType } from 'vue';
+	import { defineComponent, onMounted, PropType } from 'vue';
 	import { OverlayHostAlert } from '../../types/OverlayAlert';
+
+	const sound = new Audio('/sounds/host.mp3');
 
 	const HostAlert = defineComponent({
 		name: 'HostAlert',
@@ -22,7 +24,11 @@
 			},
 		},
 
-		setup({ alert }) {},
+		setup({ alert }) {
+			onMounted(() => {
+				sound.play();
+			});
+		},
 	});
 
 	export default HostAlert;

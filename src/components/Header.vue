@@ -1,5 +1,5 @@
 <template>
-	<div class="flex items-center justify-end h-16 px-8 text-2xl bg-white">
+	<div class="flex items-center justify-end h-16 px-8 text-2xl text-white border-b-4 bg-bg border-follow">
 		{{ viewers }} viewers | {{ followers }} followers
 	</div>
 </template>
