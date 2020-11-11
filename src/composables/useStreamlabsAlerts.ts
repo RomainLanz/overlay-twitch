@@ -39,8 +39,9 @@ export function useStreamlabsAlert(duration: number = 10000) {
 
 		alerts.value = [...normalizedEvents, ...alerts.value];
 
+		const ids = normalizedEvents.map((event) => event._id);
 		setTimeout(() => {
-			alerts.value = alerts.value.filter((a) => a._id !== normalizedEvents[0]._id);
+			alerts.value = alerts.value.filter((a) => !ids.includes(a._id));
 		}, duration);
 	}
 
