@@ -24,10 +24,6 @@
 	const AlertList = defineComponent({
 		name: 'AlertList',
 
-		components: {
-			FollowAlert: () => import('./Alerts/FollowAlert.vue'),
-		},
-
 		setup() {
 			const alerts = useStreamlabsAlert();
 
