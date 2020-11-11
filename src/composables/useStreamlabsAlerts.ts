@@ -29,11 +29,18 @@ export function useStreamlabsAlert(duration: number = 10000) {
 			return;
 		}
 
-		const alert = { type: event.type, ...event.message[0] } as OverlayAlert;
-		alerts.value = [alert, ...alerts.value];
+		/**
+		 * @see https://github.com/microsoft/TypeScript/issues/36390
+		 */
+		const normalizedEvents = (event.message as any).map((message: object) => ({
+			type: event.type,
+			...message,
+		})) as OverlayAlert[];
+
+		alerts.value = [...normalizedEvents, ...alerts.value];
 
 		setTimeout(() => {
-			alerts.value = alerts.value.filter((a) => a._id !== alert._id);
+			alerts.value = alerts.value.filter((a) => a._id !== normalizedEvents[0]._id);
 		}, duration);
 	}
 
