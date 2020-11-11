@@ -1,5 +1,5 @@
 <template>
-	<div class="px-8 py-4 text-gray-900 bg-white border-gray-300 rounded-lg shadow-2xl">
+	<div class="flex-grow-0 px-8 py-4 text-gray-900 bg-white border-gray-300 rounded-lg shadow-2xl">
 		<slot />
 	</div>
 </template>
