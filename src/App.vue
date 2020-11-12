@@ -1,5 +1,5 @@
 <template>
-	<div class="relative w-screen h-screen bg-gray-900 font-base">
+	<div class="relative w-screen h-screen font-base">
 		<RouterView />
 	</div>
 </template>
