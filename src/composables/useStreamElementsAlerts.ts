@@ -3,6 +3,7 @@ import { v4 as uuid } from '@lukeed/uuid';
 import { onBeforeUnmount, ref } from 'vue';
 import { OverlayEvents } from '../types/OverlayEvent';
 import { EventType, StreamElementsEvents } from '../types/StreamElementsEvent';
+import { getUrlParam } from '../utils/getKey';
 
 const eventName = import.meta.env.VITE_STREAMELEMENTS_EVENT;
 
@@ -13,7 +14,7 @@ const socket = io('https://realtime.streamelements.com', {
 socket.on('connect', () => {
 	socket.emit('authenticate', {
 		method: 'jwt',
-		token: import.meta.env.VITE_STREAMELEMENTS_SOCKET_JWT,
+		token: getUrlParam('socket', import.meta.env.VITE_STREAMELEMENTS_SOCKET_JWT),
 	});
 });
 
