@@ -4,6 +4,8 @@ import { onBeforeUnmount, ref } from 'vue';
 import { OverlayEvents } from '../types/OverlayEvent';
 import { EventType, StreamElementsEvents } from '../types/StreamElementsEvent';
 
+const eventName = import.meta.env.VITE_STREAMELEMENTS_EVENT;
+
 const socket = io('https://realtime.streamelements.com', {
 	transports: ['websocket'],
 });
@@ -31,10 +33,10 @@ export function useStreamElementsAlerts(duration = 6000) {
 		}, duration);
 	}
 
-	socket.on('event:test', onEvent);
+	socket.on(eventName, onEvent);
 
 	onBeforeUnmount(() => {
-		socket.off('event:test', onEvent);
+		socket.off(eventName, onEvent);
 	});
 
 	return alerts;

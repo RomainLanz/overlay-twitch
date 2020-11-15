@@ -14,7 +14,6 @@
 	import Alert from './Alert.vue';
 	import { defineComponent, onMounted, PropType } from 'vue';
 	import { OverlayCheerEvent } from '../../types/OverlayEvent';
-
 	const sound = new Audio('/sounds/donation.mp3');
 
 	const CheerAlert = defineComponent({
