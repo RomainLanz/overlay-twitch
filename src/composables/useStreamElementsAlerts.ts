@@ -5,7 +5,7 @@ import { OverlayEvents } from '../types/OverlayEvent';
 import { EventType, StreamElementsEvents } from '../types/StreamElementsEvent';
 import { getUrlParam } from '../utils/getKey';
 
-const eventName = import.meta.env.VITE_STREAMELEMENTS_EVENT;
+const eventName = String(import.meta.env.VITE_STREAMELEMENTS_EVENT);
 
 const socket = io('https://realtime.streamelements.com', {
 	transports: ['websocket'],
@@ -14,9 +14,11 @@ const socket = io('https://realtime.streamelements.com', {
 socket.on('connect', () => {
 	socket.emit('authenticate', {
 		method: 'jwt',
-		token: getUrlParam('socket', import.meta.env.VITE_STREAMELEMENTS_SOCKET_JWT),
+		token: getUrlParam('socket', String(import.meta.env.VITE_STREAMELEMENTS_SOCKET_JWT)),
 	});
 });
+
+const wantTestEvent = getUrlParam('testEvent', false);
 
 export function useStreamElementsAlerts(duration = 6000) {
 	const alerts = ref<OverlayEvents[]>([]);
@@ -36,8 +38,16 @@ export function useStreamElementsAlerts(duration = 6000) {
 
 	socket.on(eventName, onEvent);
 
+	if (wantTestEvent) {
+		socket.on('event:test', onEvent);
+	}
+
 	onBeforeUnmount(() => {
 		socket.off(eventName, onEvent);
+
+		if (wantTestEvent) {
+			socket.off('event:test', onEvent);
+		}
 	});
 
 	return alerts;

@@ -3,8 +3,8 @@ import useSWRV from 'swrv';
 import { unref } from 'vue';
 import { getUrlParam } from '../utils/getKey';
 
-const twitchApiKey = getUrlParam('twitchKey', import.meta.env.VITE_TWITCH_API_KEY);
-const channelId = getUrlParam('channelId', import.meta.env.VITE_TWITCH_CHANNEL_ID);
+const twitchApiKey = getUrlParam('twitchKey', String(import.meta.env.VITE_TWITCH_API_KEY));
+const channelId = getUrlParam('channelId', String(import.meta.env.VITE_TWITCH_CHANNEL_ID));
 
 export interface TwitchChannel {
 	followers: number;
