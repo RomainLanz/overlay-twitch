@@ -1,9 +1,13 @@
 <template>
 	<Alert>
-		<p>
+		<p v-if="alert.event.gifted">
+			Merci à <strong class="text-sub">{{ alert.event.sender }}</strong> pour le GiftSub à
+			<strong class="text-sub">{{ alert.event.displayName }}</strong> !
+		</p>
+		<p v-else>
 			Merci pour l'abonnement <strong class="text-sub">{{ alert.event.displayName }}</strong> !
 		</p>
-		<q v-if="alert.event.message" class="font-bold">
+		<q v-if="alert.event.message && !alert.event.gifted" class="font-bold">
 			{{ alert.event.message }}
 		</q>
 	</Alert>
