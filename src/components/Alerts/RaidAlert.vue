@@ -1,14 +1,14 @@
 <template>
 	<Alert>
-		<strong class="text-raid">{{ alert.name }}</strong> nous raid avec ses
-		<strong class="text-raid">{{ alert.raiders }} raiders</strong> !
+		<strong class="text-raid">{{ alert.event.displayName }}</strong> nous raid avec ses
+		<strong class="text-raid">{{ alert.event.amount }} raiders</strong> !
 	</Alert>
 </template>
 
 <script lang="ts">
 	import Alert from './Alert.vue';
 	import { defineComponent, onMounted, PropType } from 'vue';
-	import { OverlayRaidAlert } from '../../types/OverlayAlert';
+	import { OverlayRaidEvent } from '../../types/OverlayEvent';
 
 	const sound = new Audio('/sounds/host.mp3');
 
@@ -19,7 +19,7 @@
 
 		props: {
 			alert: {
-				type: Object as PropType<OverlayRaidAlert>,
+				type: Object as PropType<OverlayRaidEvent>,
 				required: true,
 			},
 		},

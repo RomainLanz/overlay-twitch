@@ -1,14 +1,14 @@
 <template>
 	<Alert>
-		<strong class="text-host">{{ alert.name }}</strong> nous host avec ses
-		<strong class="text-host">{{ alert.viewers }} viewers</strong> !
+		<strong class="text-host">{{ alert.event.displayName }}</strong> nous host avec ses
+		<strong class="text-host">{{ alert.event.amount }} viewers</strong> !
 	</Alert>
 </template>
 
 <script lang="ts">
 	import Alert from './Alert.vue';
 	import { defineComponent, onMounted, PropType } from 'vue';
-	import { OverlayHostAlert } from '../../types/OverlayAlert';
+	import { OverlayHostEvent } from '../../types/OverlayEvent';
 
 	const sound = new Audio('/sounds/host.mp3');
 
@@ -19,7 +19,7 @@
 
 		props: {
 			alert: {
-				type: Object as PropType<OverlayHostAlert>,
+				type: Object as PropType<OverlayHostEvent>,
 				required: true,
 			},
 		},

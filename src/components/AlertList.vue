@@ -11,7 +11,7 @@
 			move-class="transition duration-200 transform"
 			tag="div"
 		>
-			<div class="flex justify-end" v-for="alert in alerts" :key="alert._id">
+			<div class="flex justify-end" v-for="alert in alerts" :key="alert.uuid">
 				<component :is="getComponent(alert)" :alert="alert"></component>
 			</div>
 		</TransitionGroup>
@@ -20,28 +20,27 @@
 
 <script lang="ts">
 	import { defineComponent } from 'vue';
-	import { useStreamlabsAlert } from '../composables/useStreamlabsAlerts';
+	import { useStreamElementsAlerts } from '../composables/useStreamElementsAlerts';
 	import { OverlayAlert } from '../types/OverlayAlert';
-	import { BitsAlert, FollowAlert, HostAlert, RaidAlert, ResubAlert, SubscriptionAlert } from './Alerts';
+	import { CheerAlert, FollowAlert, HostAlert, RaidAlert, ResubAlert, SubscriptionAlert } from './Alerts';
+	import { OverlayEvents } from '../types/OverlayEvent';
 
-	const componentsMap: Record<OverlayAlert['type'], any> = {
-		follow: FollowAlert,
-		resub: ResubAlert,
-		host: HostAlert,
-		donation: FollowAlert,
-		bits: BitsAlert,
-		raid: RaidAlert,
-		subscription: SubscriptionAlert,
+	const componentsMap: Record<OverlayEvents['listener'], any> = {
+		'follower-latest': FollowAlert,
+		'subscriber-latest': SubscriptionAlert,
+		'host-latest': HostAlert,
+		'raid-latest': RaidAlert,
+		'cheer-latest': CheerAlert,
 	};
 
 	const AlertList = defineComponent({
 		name: 'AlertList',
 
 		setup() {
-			const alerts = useStreamlabsAlert(6000);
+			const alerts = useStreamElementsAlerts();
 
-			function getComponent(alert: OverlayAlert) {
-				return componentsMap[alert.type] as any;
+			function getComponent(alert: OverlayEvents) {
+				return componentsMap[alert.listener] as any;
 			}
 
 			return { alerts, getComponent };

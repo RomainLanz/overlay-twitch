@@ -6,6 +6,7 @@
     "build": "typecheck . && vite build"
   },
   "dependencies": {
+    "@lukeed/uuid": "^2.0.0",
     "axios": "^0.21.0",
     "lodash": "^4.17.20",
     "socket.io-client": "^2.3.1",
