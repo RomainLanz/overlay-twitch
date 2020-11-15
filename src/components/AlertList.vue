@@ -22,15 +22,15 @@
 	import { defineComponent } from 'vue';
 	import { useStreamElementsAlerts } from '../composables/useStreamElementsAlerts';
 	import { OverlayAlert } from '../types/OverlayAlert';
-	import { CheerAlert, FollowAlert, HostAlert, RaidAlert, ResubAlert, SubscriptionAlert } from './Alerts';
+	import { CheerAlert, FollowAlert, HostAlert, RaidAlert, SubscriptionAlert } from './Alerts';
 	import { OverlayEvents } from '../types/OverlayEvent';
 
-	const componentsMap: Record<OverlayEvents['listener'], any> = {
-		'follower-latest': FollowAlert,
-		'subscriber-latest': SubscriptionAlert,
-		'host-latest': HostAlert,
-		'raid-latest': RaidAlert,
-		'cheer-latest': CheerAlert,
+	const componentsMap: Record<OverlayEvents['type'], any> = {
+		follow: FollowAlert,
+		subscriber: SubscriptionAlert,
+		host: HostAlert,
+		raid: RaidAlert,
+		cheer: CheerAlert,
 	};
 
 	const AlertList = defineComponent({
@@ -40,7 +40,7 @@
 			const alerts = useStreamElementsAlerts();
 
 			function getComponent(alert: OverlayEvents) {
-				return componentsMap[alert.listener] as any;
+				return componentsMap[alert.type] as any;
 			}
 
 			return { alerts, getComponent };

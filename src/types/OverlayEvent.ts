@@ -1,9 +1,9 @@
 import {
-	StreamElementsCheerEvent,
-	StreamElementsFollowerEvent,
-	StreamElementsHostEvent,
-	StreamElementsRaidEvent,
-	StreamElementsSubscriberEvent,
+	StreamElementsCheerEventData,
+	StreamElementsFollowerEventData,
+	StreamElementsHostEventData,
+	StreamElementsRaidEventData,
+	StreamElementsSubscriberEventData,
 } from './StreamElementsEvent';
 
 export type OverlayEvents =
@@ -15,20 +15,25 @@ export type OverlayEvents =
 
 export type OverlayFollowerEvent = {
 	uuid: string;
-} & StreamElementsFollowerEvent;
+	type: 'follow';
+} & StreamElementsFollowerEventData;
 
 export type OverlaySubscriberEvent = {
 	uuid: string;
-} & StreamElementsSubscriberEvent;
+	type: 'subscriber';
+} & StreamElementsSubscriberEventData;
 
 export type OverlayHostEvent = {
 	uuid: string;
-} & StreamElementsHostEvent;
+	type: 'host';
+} & StreamElementsHostEventData;
 
 export type OverlayRaidEvent = {
 	uuid: string;
-} & StreamElementsRaidEvent;
+	type: 'raid';
+} & StreamElementsRaidEventData;
 
 export type OverlayCheerEvent = {
 	uuid: string;
-} & StreamElementsCheerEvent;
+	type: 'cheer';
+} & StreamElementsCheerEventData;

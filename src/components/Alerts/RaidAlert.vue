@@ -1,7 +1,7 @@
 <template>
 	<Alert>
-		<strong class="text-raid">{{ alert.event.displayName }}</strong> nous raid avec ses
-		<strong class="text-raid">{{ alert.event.amount }} raiders</strong> !
+		<strong class="text-raid">{{ alert.displayName }}</strong> nous raid avec ses
+		<strong class="text-raid">{{ alert.amount }} raiders</strong> !
 	</Alert>
 </template>
 

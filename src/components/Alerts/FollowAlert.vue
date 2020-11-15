@@ -1,6 +1,6 @@
 <template>
 	<Alert>
-		Merci <strong class="font-bold text-follow">{{ alert.event.displayName }}</strong> pour le follow !
+		Merci <strong class="font-bold text-follow">{{ alert.displayName }}</strong> pour le follow !
 	</Alert>
 </template>
 
@@ -24,7 +24,6 @@
 		},
 
 		setup({ alert }) {
-			alert.event.displayName;
 			onMounted(() => {
 				sound.play();
 			});

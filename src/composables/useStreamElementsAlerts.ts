@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import { v4 as uuid } from '@lukeed/uuid';
 import { onBeforeUnmount, ref } from 'vue';
 import { OverlayEvents } from '../types/OverlayEvent';
-import { EventType, StreamElementsEvents } from '../types/StreamElementsEvent';
+import { EventType, StreamElementsEvents, StreamElementsTestEvents, TestEventType } from '../types/StreamElementsEvent';
 import { getUrlParam } from '../utils/getKey';
 
 const eventName = String(import.meta.env.VITE_STREAMELEMENTS_EVENT);
@@ -18,18 +18,59 @@ socket.on('connect', () => {
 	});
 });
 
-const wantTestEvent = getUrlParam('testEvent', false);
+const testTypeMap: Record<StreamElementsTestEvents['listener'], StreamElementsEvents['type']> = {
+	'follower-latest': 'follow',
+	'subscriber-latest': 'subscriber',
+	'host-latest': 'host',
+	'raid-latest': 'raid',
+	'cheer-latest': 'cheer',
+};
+
+const wantTestEvent = Boolean(getUrlParam('testEvent', false));
+
+function isTestEvent(event: StreamElementsEvents | StreamElementsTestEvents): event is StreamElementsTestEvents {
+	return event.hasOwnProperty('listener');
+}
+
+function convertTestType(type: StreamElementsTestEvents['listener']): StreamElementsEvents['type'] {
+	return testTypeMap[type];
+}
+
+function alertCreator(uuid: string, message: StreamElementsEvents | StreamElementsTestEvents): any {
+	if (isTestEvent(message)) {
+		return {
+			...message.event,
+			uuid,
+			type: convertTestType(message.listener),
+		};
+	}
+
+	return {
+		...message.data,
+		uuid,
+		type: message.type,
+	};
+}
 
 export function useStreamElementsAlerts(duration = 6000) {
 	const alerts = ref<OverlayEvents[]>([]);
 
-	function onEvent(message: StreamElementsEvents) {
-		if (!EventType.includes(message.listener)) {
+	function onEvent(message: StreamElementsEvents | StreamElementsTestEvents) {
+		console.log(message);
+
+		if (
+			(isTestEvent(message) && !wantTestEvent) ||
+			(isTestEvent(message) && !TestEventType.includes(message.listener))
+		) {
+			return;
+		}
+
+		if (!isTestEvent(message) && !EventType.includes(message.type)) {
 			return;
 		}
 
 		const id = uuid();
-		alerts.value = [{ uuid: id, ...message }, ...alerts.value];
+		alerts.value = [alertCreator(id, message), ...alerts.value];
 
 		setTimeout(() => {
 			alerts.value = alerts.value.filter((alert) => alert.uuid !== id);

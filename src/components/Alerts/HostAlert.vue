@@ -1,7 +1,7 @@
 <template>
 	<Alert>
-		<strong class="text-host">{{ alert.event.displayName }}</strong> nous host avec ses
-		<strong class="text-host">{{ alert.event.amount }} viewers</strong> !
+		<strong class="text-host">{{ alert.displayName }}</strong> nous host avec ses
+		<strong class="text-host">{{ alert.amount }} viewers</strong> !
 	</Alert>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
 	<Alert>
 		<p>
-			Merci à <strong class="text-sub">{{ alert.event.displayName }}</strong> pour la donation de
-			<strong class="text-sub">{{ alert.event.amount }} cheers</strong> !
+			Merci à <strong class="text-sub">{{ alert.displayName }}</strong> pour la donation de
+			<strong class="text-sub">{{ alert.amount }} cheers</strong> !
 		</p>
-		<q v-if="alert.event.message" class="font-bold">
-			{{ alert.event.message }}
+		<q v-if="alert.message" class="font-bold">
+			{{ alert.message }}
 		</q>
 	</Alert>
 </template>
