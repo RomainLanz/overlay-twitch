@@ -28,15 +28,17 @@
 	import { useViewerCount } from '../composables/useViewerCount';
 	import { useFollowerCount } from '../composables/useFollowerCount';
 	import { useSubscriberCount } from '../composables/useSubscriberCount';
+	import { useRoute } from 'vue-router';
 
 	const Header = defineComponent({
 		name: 'Header',
 
 		setup() {
+			const route = useRoute();
 			const followers = useFollowerCount();
 			const viewers = useViewerCount();
 			const subscribers = useSubscriberCount();
-			const subGoal = 50;
+			const subGoal = route.query.subGoal;
 
 			return { subGoal, subscribers, followers, viewers };
 		},
