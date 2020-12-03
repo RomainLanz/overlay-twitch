@@ -3,7 +3,10 @@ import useSWRV from 'swrv';
 import { unref } from 'vue';
 import { getUrlParam } from '../utils/getKey';
 
+// @ts-expect-error
 const twitchApiKey = getUrlParam('twitchKey', String(import.meta.env.VITE_TWITCH_API_KEY));
+
+// @ts-expect-error
 const channelId = getUrlParam('channelId', String(import.meta.env.VITE_TWITCH_CHANNEL_ID));
 
 export interface TwitchChannel {

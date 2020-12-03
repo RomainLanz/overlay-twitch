@@ -5,6 +5,7 @@ import { OverlayEvents } from '../types/OverlayEvent';
 import { EventType, StreamElementsEvents, StreamElementsTestEvents, TestEventType } from '../types/StreamElementsEvent';
 import { getUrlParam } from '../utils/getKey';
 
+// @ts-expect-error
 const eventName = String(import.meta.env.VITE_STREAMELEMENTS_EVENT);
 
 const socket = io('https://realtime.streamelements.com', {
@@ -14,11 +15,12 @@ const socket = io('https://realtime.streamelements.com', {
 socket.on('connect', () => {
 	socket.emit('authenticate', {
 		method: 'jwt',
+		// @ts-expect-error
 		token: getUrlParam('socket', String(import.meta.env.VITE_STREAMELEMENTS_SOCKET_JWT)),
 	});
 });
 
-const testTypeMap: Record<StreamElementsTestEvents['listener'], StreamElementsEvents['type']> = {
+export const testTypeMap: Record<StreamElementsTestEvents['listener'], StreamElementsEvents['type']> = {
 	'follower-latest': 'follow',
 	'subscriber-latest': 'subscriber',
 	'host-latest': 'host',
@@ -28,15 +30,15 @@ const testTypeMap: Record<StreamElementsTestEvents['listener'], StreamElementsEv
 
 const wantTestEvent = Boolean(getUrlParam('testEvent', false));
 
-function isTestEvent(event: StreamElementsEvents | StreamElementsTestEvents): event is StreamElementsTestEvents {
+export function isTestEvent(event: StreamElementsEvents | StreamElementsTestEvents): event is StreamElementsTestEvents {
 	return event.hasOwnProperty('listener');
 }
 
-function convertTestType(type: StreamElementsTestEvents['listener']): StreamElementsEvents['type'] {
+export function convertTestType(type: StreamElementsTestEvents['listener']): StreamElementsEvents['type'] {
 	return testTypeMap[type];
 }
 
-function alertCreator(uuid: string, message: StreamElementsEvents | StreamElementsTestEvents): any {
+export function alertCreator(uuid: string, message: StreamElementsEvents | StreamElementsTestEvents): any {
 	if (isTestEvent(message)) {
 		return {
 			...message.event,
@@ -56,8 +58,6 @@ export function useStreamElementsAlerts(duration = 6000) {
 	const alerts = ref<OverlayEvents[]>([]);
 
 	function onEvent(message: StreamElementsEvents | StreamElementsTestEvents) {
-		console.log(message);
-
 		if (
 			(isTestEvent(message) && !wantTestEvent) ||
 			(isTestEvent(message) && !TestEventType.includes(message.listener))
