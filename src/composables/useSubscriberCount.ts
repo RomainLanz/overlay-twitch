@@ -12,7 +12,7 @@ export function useSubscriberCount() {
 			return;
 		}
 
-		subscribers.value = _.get(data.value, 'data.length', 0);
+		subscribers.value = _.get(data.value, 'data.length', 1) - 1;
 	});
 
 	return subscribers;
