@@ -1,5 +1,5 @@
 <template>
-	<div class="grid h-16 grid-cols-3 px-8 text-2xl text-white border-b-4 bg-bg border-follow">
+	<div class="grid h-16 grid-cols-2 px-8 text-2xl text-white border-b-4 bg-bg border-follow">
 		<div>
 			<!-- Songs -->
 		</div>
