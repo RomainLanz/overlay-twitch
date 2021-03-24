@@ -4,19 +4,6 @@
 			<!-- Songs -->
 		</div>
 
-		<div class="flex items-center justify-center">
-			<div class="w-full h-8 overflow-hidden bg-white rounded-full">
-				<div
-					class="flex items-center justify-center h-full font-medium bg-follow"
-					:style="{
-						width: `${(subscribers / subGoal) * 100}%`,
-					}"
-				>
-					<span>{{ subscribers }} subs / {{ subGoal }}</span>
-				</div>
-			</div>
-		</div>
-
 		<div class="flex items-center justify-end">
 			<span>{{ viewers }} viewers | {{ followers }} followers</span>
 		</div>
@@ -27,20 +14,15 @@
 	import { defineComponent } from 'vue';
 	import { useViewerCount } from '../composables/useViewerCount';
 	import { useFollowerCount } from '../composables/useFollowerCount';
-	import { useSubscriberCount } from '../composables/useSubscriberCount';
-	import { useRoute } from 'vue-router';
 
 	const Header = defineComponent({
 		name: 'Header',
 
 		setup() {
-			const route = useRoute();
 			const followers = useFollowerCount();
 			const viewers = useViewerCount();
-			const subscribers = useSubscriberCount();
-			const subGoal = route.query.subGoal;
 
-			return { subGoal, subscribers, followers, viewers };
+			return { followers, viewers };
 		},
 	});
 
