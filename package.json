@@ -7,10 +7,18 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@lukeed/uuid": "^2.0.0",
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21",
+    "socket.io-client": "^2.4.0",
+    "swrv": "^1.0.0-beta.8",
     "vue": "^3.0.5",
     "vue-router": "^4.0.5"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.168",
+    "@types/socket.io-client": "^1.4.36",
     "@vitejs/plugin-vue": "^1.2.1",
     "@vue/compiler-sfc": "^3.0.5",
     "autoprefixer": "^10.2.5",
