@@ -19,7 +19,7 @@
 	import type { PropType } from 'vue';
 	import type { OverlaySubscriberEvent } from '../../types/OverlayEvent';
 
-	const sound = new Audio('/sounds/subscription.mp3');
+	const sound = new Audio('/sounds/spooky-subscription.mp3');
 
 	defineProps({
 		alert: {

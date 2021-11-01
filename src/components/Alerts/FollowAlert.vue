@@ -10,7 +10,7 @@
 	import type { PropType } from 'vue';
 	import type { OverlayFollowerEvent } from '../../types/OverlayEvent';
 
-	const sound = new Audio('/sounds/follow.mp3');
+	const sound = new Audio('/sounds/spooky-follow.mp3');
 
 	defineProps({
 		alert: {

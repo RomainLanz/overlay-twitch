@@ -17,7 +17,7 @@
 	import type { PropType } from 'vue';
 	import type { OverlayCheerEvent } from '../../types/OverlayEvent';
 
-	const sound = new Audio('/sounds/donation.mp3');
+	const sound = new Audio('/sounds/spooky-donation.mp3');
 
 	defineProps({
 		alert: {
