@@ -5,7 +5,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: ['Work Sans'],
-				base: ['Cascadia Code'],
+				base: ['MonoLisa'],
 			},
 			colors: {
 				follow: '#fb6745',
