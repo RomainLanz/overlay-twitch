@@ -23,11 +23,11 @@
 <style>
 	.radient {
 		position: absolute;
-		top: -125px;
-		left: -20px;
+		top: -130px;
+		left: -100px;
 		background: linear-gradient(#00ffff, #e500f1);
 		height: 250px;
-		width: 1200px;
-		filter: blur(30px);
+		width: 1500px;
+		filter: blur(70px);
 	}
 </style>
