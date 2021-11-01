@@ -7,7 +7,6 @@
 
 <script name="RaidAlert" lang="ts" setup>
 	import Alert from './Alert.vue';
-	import { defineProps, onMounted } from 'vue';
 	import type { PropType } from 'vue';
 	import type { OverlayRaidEvent } from '../../types/OverlayEvent';
 

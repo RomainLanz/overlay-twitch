@@ -31,7 +31,6 @@
 
 <script name="Bot" lang="ts" setup>
 	import { escape, truncate } from 'lodash';
-	import { onMounted, ref } from 'vue';
 	import io from 'socket.io-client';
 
 	const messages = ref<Record<string, string>[]>([]);

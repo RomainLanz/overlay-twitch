@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { ref, watchEffect } from 'vue';
 import { useTwitchEndpoint } from './useTwitchEndpoint';
 
 export function useFollowerCount() {

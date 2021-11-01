@@ -1,6 +1,5 @@
 import io from 'socket.io-client';
 import { v4 as uuid } from '@lukeed/uuid';
-import { onBeforeUnmount, ref } from 'vue';
 import { OverlayEvents } from '../types/OverlayEvent';
 import { EventType, StreamElementsEvents, StreamElementsTestEvents, TestEventType } from '../types/StreamElementsEvent';
 

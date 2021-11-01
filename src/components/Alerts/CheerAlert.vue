@@ -11,7 +11,6 @@
 </template>
 
 <script name="CheerAlert" lang="ts" setup>
-	import { defineProps, onMounted } from 'vue';
 	import Alert from './Alert.vue';
 
 	import type { PropType } from 'vue';

@@ -15,7 +15,6 @@
 
 <script name="SubscriptionAlert" lang="ts" setup>
 	import Alert from './Alert.vue';
-	import { defineProps, onMounted } from 'vue';
 	import type { PropType } from 'vue';
 	import type { OverlaySubscriberEvent } from '../../types/OverlayEvent';
 
